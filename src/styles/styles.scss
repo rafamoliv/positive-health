@@ -1,1 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
+
+a {
+  color: $secondary;
+
+  &:hover {
+    color: $secondary;
+    opacity: 0.8;
+  }
+}
