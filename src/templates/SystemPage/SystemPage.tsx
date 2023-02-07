@@ -1,18 +1,48 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   faRightFromBracket,
   faCircleInfo,
   faGrip,
   faCalendarDays,
   faListCheck,
-  faGear
+  faGear,
+  faBell
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
-import { ReactNode } from 'react'
+import { ReactNode, forwardRef } from 'react'
+import { Dropdown, Image, Figure } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
 
 import { IconLogoPh } from '@/assets'
 import { privateURL, publicURL } from '@/routes/urls'
+
+/**
+ * Custom dropdown toggle
+ */
+
+interface CustomToggleProps {
+  children: ReactNode
+  // eslint-disable-next-line no-unused-vars
+  onClick: (e: any) => void
+}
+
+const CustomToggle = forwardRef<HTMLButtonElement, CustomToggleProps>(
+  ({ children, onClick }, ref) => (
+    <button
+      className="bg-light border-0"
+      onClick={(e: any) => {
+        e.preventDefault()
+        onClick(e)
+      }}
+      ref={ref}
+    >
+      {children}
+    </button>
+  )
+)
+
+CustomToggle.displayName = 'CustomToggle'
 
 /**
  * Internal pages template
@@ -104,13 +134,35 @@ export const SystemPage = ({ children }: SystemPageProps) => {
         <header className="pl-2 pr-2">
           <div
             className="d-flex align-items-center justify-content-between"
-            style={{ width: '1400px' }}
+            style={{ height: '80px', width: '1400px' }}
           >
             <h2>Olá, Rafael Oliveira</h2>
 
-            <figure>
-              <img alt="PositiveHealth Logo" src={'https://picsum.photos/80'} />
-            </figure>
+            <nav className="d-flex align-items-center gap-4">
+              <FontAwesomeIcon
+                className={clsx(svgStyles, 'p-2 p-2')}
+                icon={faBell}
+              />
+
+              <Dropdown>
+                <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
+                  <Figure className="m-0">
+                    <Image
+                      alt="PositiveHealth Logo"
+                      roundedCircle
+                      src={'https://picsum.photos/48'}
+                    />
+                  </Figure>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href={'#'}>Perfil</Dropdown.Item>
+                  <Dropdown.Item href={'#'}>Configurações</Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item href={publicURL.SIGNIN}>Sair</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </nav>
           </div>
         </header>
 
