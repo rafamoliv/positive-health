@@ -9,7 +9,7 @@ import { ProgressiveBar } from '@/components/ProgressiveBar'
 import config from './Dashboard.config'
 import { LineChart, DoughnutChart, PieChart, VerticalBarChart } from './charts'
 
-import { SystemPage } from '@/templates/SystemPage'
+import { SystemPage } from '@/templates'
 
 const Dashboard = () => {
   const [showPatientModal, setShowPatientModal] = useState(false)

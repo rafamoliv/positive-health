@@ -1,8 +1,9 @@
-import { AppContext } from '@/context/AppContext'
 import { useContext, useEffect, lazy } from 'react'
 import { Navigate, Outlet, useNavigate, useRoutes } from 'react-router-dom'
 
 import { privateURL, publicURL } from './urls'
+
+import { AppContext } from '@/context/AppContext'
 
 // pages
 const Dashboard = lazy(() => import('@/pages/Dashboard'))
