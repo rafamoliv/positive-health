@@ -2,10 +2,11 @@ import { faker } from '@faker-js/faker'
 import { useContext, useState } from 'react'
 import { Figure } from 'react-bootstrap'
 
-import { Button, Calendar, Label, Modal } from '@/components'
+import { Button, Calendar, Card, Label, Modal } from '@/components'
 import { Table } from '@/components/Table'
 
 import config from './Appointment.config'
+import { LineChart } from './charts'
 
 import { AppContext } from '@/context/AppContext'
 import { SystemPage } from '@/templates'
@@ -38,6 +39,11 @@ const Appointment = () => {
 
       <SystemPage.Aside>
         <Calendar />
+        <Card.Root title={'Patient Statistics'}>
+          <Card.Item>
+            <LineChart />
+          </Card.Item>
+        </Card.Root>
       </SystemPage.Aside>
 
       <Modal
