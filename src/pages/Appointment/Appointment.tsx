@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker'
 import { useContext, useState } from 'react'
 import { Figure } from 'react-bootstrap'
 
-import { Calendar, Label, Modal } from '@/components'
+import { Button, Calendar, Label, Modal } from '@/components'
 import { Table } from '@/components/Table'
 
 import config from './Appointment.config'
@@ -25,7 +25,11 @@ const Appointment = () => {
                 <Table.Cell>{row.code}</Table.Cell>
                 <Table.Cell>{row.name}</Table.Cell>
                 <Table.Cell>{row.plan}</Table.Cell>
-                <Table.Cell>btn</Table.Cell>
+                <Table.Cell>
+                  <Button onClick={() => setShowPatientModal(true)}>
+                    View chart
+                  </Button>
+                </Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
