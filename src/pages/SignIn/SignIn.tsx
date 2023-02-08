@@ -46,7 +46,7 @@ const SignIn = () => {
 
   return (
     <SignPage>
-      <Figure>
+      <Figure className="text-center">
         <Figure.Image
           alt="PositiveHealth Logo"
           className="mb-4"
