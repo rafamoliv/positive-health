@@ -7,9 +7,9 @@ interface CardProps {
 
 export const Card = ({ children, title }: CardProps) => {
   return (
-    <div style={{ width: '160px' }}>
+    <div>
       <h4>{title}</h4>
-      <div>{children}</div>
+      <div className="bg-white rounded-5 p-4">{children}</div>
     </div>
   )
 }
