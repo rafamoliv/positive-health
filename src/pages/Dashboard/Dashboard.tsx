@@ -1,8 +1,10 @@
 import { faker } from '@faker-js/faker'
+import { faFaceSadCry, faFaceSmile } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
-import { Figure } from 'react-bootstrap'
+import { Figure, Toast, ToastContainer } from 'react-bootstrap'
 
 import { Button, Calendar, Card, Label, Modal } from '@/components'
+import { ProgressiveBar } from '@/components/ProgressiveBar'
 
 import config from './Dashboard.config'
 import { LineChart, DoughnutChart, PieChart, VerticalBarChart } from './charts'
@@ -11,6 +13,13 @@ import { SystemPage } from '@/templates/SystemPage'
 
 const Dashboard = () => {
   const [showPatientModal, setShowPatientModal] = useState(false)
+  const [showToast, setShowToast] = useState(true)
+
+  const positiveReviewProgressiveBar = faker.datatype.number({
+    min: 60,
+    max: 95
+  })
+  const negativeProgressiveBar = 100 - positiveReviewProgressiveBar
 
   return (
     <SystemPage.Root title="Dashboard">
@@ -27,12 +36,33 @@ const Dashboard = () => {
             </Card.Item>
           </Card.Root>
         </div>
-        <Card.Root title={'Monthly revenue'}>
+
+        <Card.Root className="mb-3" title={'Monthly revenue'}>
           <Card.Item>
             <VerticalBarChart />
           </Card.Item>
         </Card.Root>
+
+        <Card.Root title={'Analytics'}>
+          <Card.Item>
+            <ProgressiveBar
+              className="mb-2"
+              icon={faFaceSmile}
+              label={'Positive review'}
+              now={positiveReviewProgressiveBar}
+              variant="success"
+            />
+
+            <ProgressiveBar
+              icon={faFaceSadCry}
+              label={'Negative review'}
+              now={negativeProgressiveBar}
+              variant="info"
+            />
+          </Card.Item>
+        </Card.Root>
       </SystemPage.Section>
+
       <SystemPage.Aside>
         <Calendar />
 
@@ -66,38 +96,58 @@ const Dashboard = () => {
             </Card.Item>
           ))}
         </Card.Root>
+      </SystemPage.Aside>
 
-        <Modal
-          onHide={() => setShowPatientModal(false)}
-          show={showPatientModal}
-          title={'Patient'}
-        >
-          <div className="d-flex justify-content-between align-items-center">
-            <div>
-              <Label title={'Id'}>{faker.datatype.uuid()}</Label>
-              <Label
-                title={'Fullname'}
-              >{`${faker.name.firstName()} ${faker.name.lastName()}`}</Label>
-            </div>
-            <Figure className="m-0 rounded-2">
+      <Modal
+        onHide={() => setShowPatientModal(false)}
+        show={showPatientModal}
+        title={'Patient'}
+      >
+        <div className="d-flex justify-content-between align-items-center">
+          <div>
+            <Label title={'Id'}>{faker.datatype.uuid()}</Label>
+            <Label
+              title={'Fullname'}
+            >{`${faker.name.firstName()} ${faker.name.lastName()}`}</Label>
+          </div>
+          <Figure className="m-0 rounded-2">
+            <Figure.Image
+              alt={`${faker.name.firstName()} avatar`}
+              className="mb-0"
+              height={136}
+              rounded
+              src={faker.image.avatar()}
+              width={136}
+            />
+          </Figure>
+        </div>
+        <Label title={'Email'}>{faker.internet.email()}</Label>
+        <Label title={'Address'}>{faker.address.streetAddress()}</Label>
+        <Label title={'Gender'}>{faker.name.sexType()}</Label>
+        <Label title={'Plan'}>
+          {faker.helpers.arrayElement(['free', 'basic', 'business'])}
+        </Label>
+      </Modal>
+
+      <ToastContainer className="p-3 mt-40" position={'bottom-end'}>
+        <Toast onClose={() => setShowToast(false)} show={showToast}>
+          <Toast.Header>
+            <Figure className="m-0">
               <Figure.Image
                 alt={`${faker.name.firstName()} avatar`}
                 className="mb-0"
-                height={136}
-                rounded
+                height={40}
+                roundedCircle
                 src={faker.image.avatar()}
-                width={136}
+                width={40}
               />
             </Figure>
-          </div>
-          <Label title={'Email'}>{faker.internet.email()}</Label>
-          <Label title={'Address'}>{faker.address.streetAddress()}</Label>
-          <Label title={'Gender'}>{faker.name.sexType()}</Label>
-          <Label title={'Plan'}>
-            {faker.helpers.arrayElement(['free', 'basic', 'business'])}
-          </Label>
-        </Modal>
-      </SystemPage.Aside>
+            <strong className="me-auto mx-2">{`${faker.name.firstName()} ${faker.name.lastName()}`}</strong>
+            <small>{faker.datatype.number({ min: 2, max: 59 })} mins ago</small>
+          </Toast.Header>
+          <Toast.Body>{faker.lorem.paragraph()}</Toast.Body>
+        </Toast>
+      </ToastContainer>
     </SystemPage.Root>
   )
 }
