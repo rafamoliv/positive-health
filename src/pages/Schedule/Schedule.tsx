@@ -1,12 +1,14 @@
 import { faker } from '@faker-js/faker'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react'
-import { Alert } from 'react-bootstrap'
+import { Alert, Figure } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 import { Calendar, Card, Form } from '@/components'
 import { nameLastNameRegExp } from '@/utils/validations'
+
+import config from './Schedule.config'
 
 import { SystemPage } from '@/templates'
 
@@ -51,8 +53,15 @@ const Schedule = () => {
     specialty
   }: ScheduleFormData) => {
     console.log({ email, date, fullname, doctor, specialty })
+    scheduledPatients.push({
+      avatar: faker.image.avatar(),
+      email: email,
+      name: fullname
+    })
     setShowAlert(true)
   }
+
+  const scheduledPatients = config.patients
 
   return (
     <SystemPage.Root title="Schedule">
@@ -120,6 +129,33 @@ const Schedule = () => {
 
       <SystemPage.Aside>
         <Calendar />
+
+        <div className="schedule">
+          <Card.Root title={'Patient Application'}>
+            <div className="d-flex flex-column gap-2 schedule__patients">
+              {scheduledPatients.map((x, i) => (
+                <Card.Item key={i}>
+                  <div className="d-flex align-items-center justify-content-between">
+                    <div className="d-flex align-items-center gap-2">
+                      <Figure className="m-0">
+                        <Figure.Image
+                          alt={`${x.name} avatar`}
+                          className="mb-0"
+                          height={40}
+                          roundedCircle
+                          src={x.avatar}
+                          width={40}
+                        />
+                      </Figure>
+                      <span>{x.name}</span>
+                    </div>
+                    <span>{x.email}</span>
+                  </div>
+                </Card.Item>
+              ))}
+            </div>
+          </Card.Root>
+        </div>
       </SystemPage.Aside>
     </SystemPage.Root>
   )
