@@ -3,15 +3,16 @@ import { Button } from 'react-bootstrap'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
+  type?: 'button' | 'submit' | 'reset'
   variant?: string
 }
 
 export const ButtonPersonalized: FC<ButtonProps> = (
-  { children, onClick, variant = 'outline-secondary' },
+  { children, onClick, type, variant = 'outline-secondary' },
   rest
 ) => {
   return (
-    <Button onClick={onClick} variant={variant} {...rest}>
+    <Button onClick={onClick} type={type} variant={variant} {...rest}>
       {children}
     </Button>
   )

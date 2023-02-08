@@ -1,7 +1,7 @@
-import { ReactNode, FC, HTMLAttributes } from 'react'
+import { FC, HTMLAttributes } from 'react'
 
 interface LabelProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode
+  children: string
   title: string
 }
 
