@@ -1,37 +1,24 @@
-import { useTranslation } from 'react-i18next'
+import { Figure } from 'react-bootstrap'
 
+import { Button } from '@/components/Button'
 import { Calendar } from '@/components/Calendar'
 import { Card } from '@/components/Card'
 
+import config from './Dashboard.config'
 import { LineChart } from './charts/LineChart'
 import { PieChart } from './charts/PieChart'
 
-import { useFetchReposQuery } from '@/services/api'
 import { SystemPage } from '@/templates/SystemPage'
 
 const Dashboard = () => {
-  const { t } = useTranslation('pgHome')
-  const { data = [] } = useFetchReposQuery('')
-
   return (
     <SystemPage.Root>
       <SystemPage.Section>
-        <div>
-          <Card.Root title={'Consultas agendadas'}>
-            <Card.Item>
-              <PieChart />
-            </Card.Item>
-          </Card.Root>
-
-          <div>
-            <p>
-              <strong>{t('redux')}</strong>
-            </p>
-            {data?.map((x, i) => {
-              return <p key={i}>{x.name}</p>
-            })}
-          </div>
-        </div>
+        <Card.Root title={'Consultas agendadas'}>
+          <Card.Item>
+            <PieChart />
+          </Card.Item>
+        </Card.Root>
       </SystemPage.Section>
       <SystemPage.Aside>
         <Calendar />
@@ -43,7 +30,26 @@ const Dashboard = () => {
         </Card.Root>
 
         <Card.Root title={'Scheduled patients'}>
-          <Card.Item>teste</Card.Item>
+          {config.patients.map((x, i) => (
+            <Card.Item key={i}>
+              <div className="d-flex align-items-center justify-content-between">
+                <div className="d-flex align-items-center gap-2">
+                  <Figure className="m-0">
+                    <Figure.Image
+                      alt={`${x.name} avatar`}
+                      className="mb-0"
+                      height={40}
+                      roundedCircle
+                      src={x.avatar}
+                      width={40}
+                    />
+                  </Figure>
+                  <span>{x.name}</span>
+                </div>
+                <Button>View profile</Button>
+              </div>
+            </Card.Item>
+          ))}
         </Card.Root>
       </SystemPage.Aside>
     </SystemPage.Root>
