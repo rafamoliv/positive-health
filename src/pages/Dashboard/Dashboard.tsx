@@ -1,36 +1,27 @@
-import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js'
-import { Doughnut } from 'react-chartjs-2'
 import { useTranslation } from 'react-i18next'
 
 import { Calendar } from '@/components/Calendar'
 import { Card } from '@/components/Card'
 
+import { LineChart } from './charts/LineChart'
+import { PieChart } from './charts/PieChart'
+
 import { useFetchReposQuery } from '@/services/api'
 import { SystemPage } from '@/templates/SystemPage'
-
-ChartJS.register(ArcElement, Tooltip)
 
 const Dashboard = () => {
   const { t } = useTranslation('pgHome')
   const { data = [] } = useFetchReposQuery('')
 
-  const dataChart = {
-    labels: ['Atendidos', 'Pendente de atendimento'],
-    datasets: [
-      {
-        data: [12, 19],
-        backgroundColor: ['rgb(119, 120, 135)', 'rgb(121, 150, 155)']
-      }
-    ]
-  }
-
   return (
     <SystemPage.Root>
       <SystemPage.Section>
         <div>
-          <Card title={'Consultas agendadas'}>
-            <Doughnut data={dataChart} />
-          </Card>
+          <Card.Root title={'Consultas agendadas'}>
+            <Card.Item>
+              <PieChart />
+            </Card.Item>
+          </Card.Root>
 
           <div>
             <p>
@@ -44,6 +35,16 @@ const Dashboard = () => {
       </SystemPage.Section>
       <SystemPage.Aside>
         <Calendar />
+
+        <Card.Root title={'Patient Statistics'}>
+          <Card.Item>
+            <LineChart />
+          </Card.Item>
+        </Card.Root>
+
+        <Card.Root title={'Scheduled patients'}>
+          <Card.Item>teste</Card.Item>
+        </Card.Root>
       </SystemPage.Aside>
     </SystemPage.Root>
   )
