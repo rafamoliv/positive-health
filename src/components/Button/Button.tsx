@@ -7,11 +7,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const ButtonPersonalized: FC<ButtonProps> = (
-  { children, variant = 'outline-secondary' },
+  { children, onClick, variant = 'outline-secondary' },
   rest
 ) => {
   return (
-    <Button variant={variant} {...rest}>
+    <Button onClick={onClick} variant={variant} {...rest}>
       {children}
     </Button>
   )
