@@ -14,7 +14,7 @@ const Appointment = lazy(() => import('@/pages/Appointment'))
 const Schedule = lazy(() => import('@/pages/Schedule'))
 
 // eslint-disable-next-line react/prop-types
-const ProtectedRoute = ({ user }: { user: string }) => {
+const ProtectedRoute = ({ user }: { user: object }) => {
   if (user) {
     return <Outlet />
   }
@@ -33,7 +33,7 @@ const Router = () => {
 
   const routes = useRoutes([
     {
-      element: <ProtectedRoute user={'user'} />,
+      element: <ProtectedRoute user={user as object} />,
       children: [
         {
           path: privateURL.DASHBOARD,
