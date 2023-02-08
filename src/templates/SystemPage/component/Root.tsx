@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { faker } from '@faker-js/faker'
 import {
   faRightFromBracket,
   faCircleInfo,
@@ -11,7 +12,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { Dropdown, Image, Figure } from 'react-bootstrap'
+import { Dropdown, Figure } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
 
 import { ChildrenProps, CustomToggleProps } from '../types'
@@ -131,7 +132,7 @@ export const Root = ({ children }: ChildrenProps) => {
             className="d-flex align-items-center container justify-content-between m-auto"
             style={{ height: '80px' }}
           >
-            <h2 className="text-light">Olá, Rafael Oliveira</h2>
+            <h2 className="text-light">Olá, {faker.name.firstName()}</h2>
 
             <nav className="d-flex align-items-center gap-4">
               <FontAwesomeIcon
@@ -142,10 +143,13 @@ export const Root = ({ children }: ChildrenProps) => {
               <Dropdown>
                 <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
                   <Figure className="m-0">
-                    <Image
+                    <Figure.Image
                       alt="PositiveHealth Logo"
+                      className="mb-0"
+                      height={48}
                       roundedCircle
-                      src={'https://picsum.photos/48'}
+                      src={faker.image.avatar()}
+                      width={48}
                     />
                   </Figure>
                 </Dropdown.Toggle>
