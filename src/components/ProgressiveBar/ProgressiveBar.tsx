@@ -23,8 +23,8 @@ export const ProgressiveBar = ({
     <div className={clsx('d-flex align-items-center gap-4', className)}>
       <div className="w-100">
         <div className="d-flex justify-content-between">
-          <p>{label}</p>
-          <span>{`${now}%`}</span>
+          <p className="fw-semibold">{label}</p>
+          <span className="fw-semibold">{`${now}%`}</span>
         </div>
         <ProgressBar now={now} variant={variant} />
       </div>
