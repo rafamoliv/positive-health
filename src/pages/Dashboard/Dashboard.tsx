@@ -30,7 +30,7 @@ const Dashboard = () => {
           </Card.Item>
         </Card.Root>
 
-        <Card.Root title={'Scheduled patients'}>
+        <Card.Root title={'Patient Application'}>
           {config.patients.map((x, i) => (
             <Card.Item key={i}>
               <div className="d-flex align-items-center justify-content-between">
