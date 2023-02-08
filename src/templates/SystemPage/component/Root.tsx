@@ -62,7 +62,7 @@ export const Root = ({ children, title }: RootProps) => {
           'd-flex flex-column flex-shrink-0 pt-3 pb-3 bg-dark',
           'position-fixed h-100'
         )}
-        style={{ width: '5rem', zIndex: '1' }}
+        style={{ width: '6rem', zIndex: '1' }}
       >
         <Link className={linkStyles} to={privateURL.DASHBOARD}>
           <figure className="text-center">
@@ -83,7 +83,7 @@ export const Root = ({ children, title }: RootProps) => {
               to={privateURL.DASHBOARD}
             >
               <FontAwesomeIcon className={svgStyles} icon={faGrip} />
-              <span className={labelStyles}>Painel</span>
+              <span className={labelStyles}>Dashboard</span>
             </Link>
           </li>
           <li className={listStyles}>
@@ -94,7 +94,7 @@ export const Root = ({ children, title }: RootProps) => {
               to={privateURL.SCHEDULING}
             >
               <FontAwesomeIcon className={svgStyles} icon={faCalendarDays} />
-              <span className={labelStyles}>Agenda</span>
+              <span className={labelStyles}>Schedule</span>
             </Link>
           </li>
           <li>
@@ -105,7 +105,7 @@ export const Root = ({ children, title }: RootProps) => {
               to={privateURL.APPOINTMENTS}
             >
               <FontAwesomeIcon className={svgStyles} icon={faListCheck} />
-              <span className={labelStyles}>Consulta</span>
+              <span className={labelStyles}>Appoint</span>
             </Link>
           </li>
         </ul>
