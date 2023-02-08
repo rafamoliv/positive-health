@@ -6,6 +6,10 @@ export interface ChildrenProps {
   children: ReactNode
 }
 
+export interface RootProps extends ChildrenProps {
+  title?: string
+}
+
 export interface CustomToggleProps extends ChildrenProps {
   onClick: (e: any) => void
 }

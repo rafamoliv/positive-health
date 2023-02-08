@@ -15,14 +15,10 @@ import { forwardRef } from 'react'
 import { Dropdown, Figure } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
 
-import { ChildrenProps, CustomToggleProps } from '../types'
+import { CustomToggleProps, RootProps } from '../types'
 
 import { IconLogoPh } from '@/assets'
 import { privateURL, publicURL } from '@/routes/urls'
-
-/**
- *
- */
 
 /**
  * Custom dropdown toggle
@@ -49,7 +45,7 @@ CustomToggle.displayName = 'CustomToggle'
  * @param {ReactNode} children
  */
 
-export const Root = ({ children }: ChildrenProps) => {
+export const Root = ({ children, title }: RootProps) => {
   const { pathname: location } = useLocation()
 
   const labelStyles = 'fw-semibold'
@@ -58,10 +54,13 @@ export const Root = ({ children }: ChildrenProps) => {
   const svgStyles = 'fs-4'
 
   return (
-    <div className="bg-light d-flex flex-nowrap vh-100 w-100">
+    <div className="d-flex flex-nowrap vh-100 w-100">
       <nav
-        className="d-flex flex-column flex-shrink-0 pt-3 pb-3 bg-dark"
-        style={{ width: '5rem' }}
+        className={clsx(
+          'd-flex flex-column flex-shrink-0 pt-3 pb-3 bg-dark',
+          'position-fixed h-100'
+        )}
+        style={{ width: '5rem', zIndex: '1' }}
       >
         <Link className={linkStyles} to={privateURL.DASHBOARD}>
           <figure className="text-center">
@@ -127,7 +126,9 @@ export const Root = ({ children }: ChildrenProps) => {
       </nav>
 
       <div className="align-items-center d-flex flex-column w-100 pl-3 pr-3">
-        <header className="pl-2 pr-2 bg-dark w-100">
+        <header
+          className={clsx('pl-2 pr-2 bg-dark w-100', 'position-sticky top-0')}
+        >
           <div
             className="d-flex align-items-center container justify-content-between m-auto"
             style={{ height: '80px' }}
@@ -166,6 +167,7 @@ export const Root = ({ children }: ChildrenProps) => {
         </header>
 
         <div className="container">
+          {title && <h2 className="fs-2, fw-bold pt-3 px-2">{title}</h2>}
           <div className="row">{children}</div>
         </div>
       </div>
