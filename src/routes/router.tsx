@@ -1,11 +1,12 @@
-import * as React from 'react'
+import { AppContext } from '@/context/AppContext'
+import { useContext, useEffect, lazy } from 'react'
 import { Navigate, Outlet, useNavigate, useRoutes } from 'react-router-dom'
 
 import { privateURL, publicURL } from './urls'
 
 // pages
-const Dashboard = React.lazy(() => import('@/pages/Dashboard'))
-const SingIn = React.lazy(() => import('@/pages/SignIn'))
+const Dashboard = lazy(() => import('@/pages/Dashboard'))
+const SingIn = lazy(() => import('@/pages/SignIn'))
 
 // eslint-disable-next-line react/prop-types
 const ProtectedRoute = ({ user }: { user: string }) => {
@@ -17,16 +18,13 @@ const ProtectedRoute = ({ user }: { user: string }) => {
 }
 
 const Router = () => {
+  const { user } = useContext(AppContext)
   const navigate = useNavigate()
 
-  React.useEffect(() => {
-    if (true) {
-      navigate(privateURL.DASHBOARD)
-    } else {
-      navigate(publicURL.SIGNIN)
-    }
+  useEffect(() => {
+    if (!user) navigate(publicURL.SIGNIN)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [user])
 
   const routes = useRoutes([
     {

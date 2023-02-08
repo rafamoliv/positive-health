@@ -11,14 +11,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { forwardRef, useContext } from 'react'
 import { Dropdown, Figure } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
 
 import { CustomToggleProps, RootProps } from '../types'
 
 import { IconLogoPh } from '@/assets'
-import { privateURL, publicURL } from '@/routes/urls'
+import { AppContext } from '@/context/AppContext'
+import { privateURL } from '@/routes/urls'
 
 /**
  * Custom dropdown toggle
@@ -46,6 +47,7 @@ CustomToggle.displayName = 'CustomToggle'
  */
 
 export const Root = ({ children, title }: RootProps) => {
+  const { handleSignOut } = useContext(AppContext)
   const { pathname: location } = useLocation()
 
   const labelStyles = 'fw-semibold'
@@ -120,7 +122,7 @@ export const Root = ({ children, title }: RootProps) => {
           <FontAwesomeIcon className={svgStyles} icon={faCircleInfo} />
         </Link>
 
-        <Link className={linkStyles} to={publicURL.SIGNIN}>
+        <Link className={linkStyles} onClick={() => handleSignOut?.()} to={'#'}>
           <FontAwesomeIcon className={svgStyles} icon={faRightFromBracket} />
         </Link>
       </nav>
@@ -159,7 +161,9 @@ export const Root = ({ children, title }: RootProps) => {
                   <Dropdown.Item href={'#'}>Perfil</Dropdown.Item>
                   <Dropdown.Item href={'#'}>Configurações</Dropdown.Item>
                   <Dropdown.Divider />
-                  <Dropdown.Item href={publicURL.SIGNIN}>Sair</Dropdown.Item>
+                  <Dropdown.Item href={'#'} onClick={() => handleSignOut?.()}>
+                    Sair
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </nav>
