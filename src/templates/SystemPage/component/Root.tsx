@@ -161,7 +161,7 @@ export const Root = ({ children }: ChildrenProps) => {
           </div>
         </header>
 
-        <div className="container p-3">
+        <div className="container">
           <div className="row">{children}</div>
         </div>
       </div>
