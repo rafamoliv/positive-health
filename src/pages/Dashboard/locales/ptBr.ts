@@ -25,7 +25,13 @@ const dashboardPtBr = {
       }
     },
     modal: {
-      title: 'Paciente'
+      title: 'Paciente',
+      fullname: 'Nome completo',
+      email: 'Email',
+      address: 'Endereço',
+      gender: 'Gênero',
+      plan: 'Plano',
+      plans: ['Gratuito', 'Básico', 'Empresarial']
     },
     toast: {
       time: '{{value}} minutos atrás'

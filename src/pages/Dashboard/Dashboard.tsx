@@ -109,7 +109,7 @@ const Dashboard = () => {
           <div>
             <Label title={'Id'}>{faker.datatype.uuid()}</Label>
             <Label
-              title={'Fullname'}
+              title={t('modal.fullname')}
             >{`${faker.name.firstName()} ${faker.name.lastName()}`}</Label>
           </div>
           <Figure className="m-0 rounded-2">
@@ -123,11 +123,17 @@ const Dashboard = () => {
             />
           </Figure>
         </div>
-        <Label title={'Email'}>{faker.internet.email()}</Label>
-        <Label title={'Address'}>{faker.address.streetAddress()}</Label>
-        <Label title={'Gender'}>{faker.name.sexType()}</Label>
-        <Label title={'Plan'}>
-          {faker.helpers.arrayElement(['free', 'basic', 'business'])}
+        <Label title={t('modal.email')}>{faker.internet.email()}</Label>
+        <Label title={t('modal.address')}>
+          {faker.address.streetAddress()}
+        </Label>
+        <Label title={t('modal.gender')}>{faker.name.sexType()}</Label>
+        <Label title={t('modal.plan')}>
+          {faker.helpers.arrayElement([
+            t('modal.plans.0'),
+            t('modal.plans.1'),
+            t('modal.plans.2')
+          ])}
         </Label>
       </Modal>
 

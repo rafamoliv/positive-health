@@ -25,7 +25,13 @@ const dashboardEn = {
       }
     },
     modal: {
-      title: 'Patient'
+      title: 'Patient',
+      fullname: 'Fullname',
+      email: 'Email',
+      address: 'Address',
+      gender: 'Gender',
+      plan: 'Plan',
+      plans: ['Free', 'Basic', 'Business']
     },
     toast: {
       time: '{{value}} mins ago'
