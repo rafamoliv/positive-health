@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker'
-import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js'
-import { Doughnut } from 'react-chartjs-2'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Pie } from 'react-chartjs-2'
 
-ChartJS.register(ArcElement, Tooltip)
+ChartJS.register(ArcElement, Tooltip, Legend)
 
 export const PieChart = () => {
   const options = {
@@ -15,17 +15,19 @@ export const PieChart = () => {
   }
 
   const pieChart = {
-    labels: ['Pendente de atendimento', 'Atendidos'],
+    labels: ['Credit Card', 'Billet', 'Cash'],
     datasets: [
       {
+        label: 'US$',
         data: [
-          faker.datatype.number({ min: 3, max: 10 }),
-          faker.datatype.number({ min: 5, max: 8 })
+          faker.finance.amount(50, 300),
+          faker.finance.amount(50, 300),
+          faker.finance.amount(50, 300)
         ],
-        backgroundColor: ['#68697D', '#79969B']
+        backgroundColor: ['#EAF0F1', '#B4C4CC', '#BCCCCC']
       }
     ]
   }
 
-  return <Doughnut data={pieChart} options={options} />
+  return <Pie data={pieChart} options={options} />
 }
