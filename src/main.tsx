@@ -8,16 +8,19 @@ import '@/locales/i18n'
 
 import Store from '@/store'
 
+import { AppContextProvider } from './context/AppContext'
 import Routes from './routes'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
     <Provider store={Store}>
-      <BrowserRouter>
-        <Suspense fallback={<h1>Loading...</h1>}>
-          <Routes />
-        </Suspense>
-      </BrowserRouter>
+      <AppContextProvider>
+        <BrowserRouter>
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Routes />
+          </Suspense>
+        </BrowserRouter>
+      </AppContextProvider>
     </Provider>
   </StrictMode>
 )
