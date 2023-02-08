@@ -1,11 +1,14 @@
+import { appointmentEn, appointmentPtBr } from './Appointment'
 import { dashboardEn, dashboardPtBr } from './Dashboard'
 
 const pagesEn = {
-  ...dashboardEn
+  ...dashboardEn,
+  ...appointmentEn
 }
 
 const pagesPtBr = {
-  ...dashboardPtBr
+  ...dashboardPtBr,
+  ...appointmentPtBr
 }
 
 export { pagesEn, pagesPtBr }

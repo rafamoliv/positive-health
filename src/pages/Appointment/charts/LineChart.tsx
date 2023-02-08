@@ -10,6 +10,7 @@ import {
   Legend
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
+import { useTranslation } from 'react-i18next'
 
 ChartJS.register(
   CategoryScale,
@@ -22,6 +23,8 @@ ChartJS.register(
 )
 
 export const LineChart = () => {
+  const { t } = useTranslation('appointmentText')
+
   const options = {
     responsive: true,
     plugins: {
@@ -43,19 +46,27 @@ export const LineChart = () => {
     }
   }
 
-  const labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const labels = [
+    t('charts.line.labels.0'),
+    t('charts.line.labels.1'),
+    t('charts.line.labels.2'),
+    t('charts.line.labels.3'),
+    t('charts.line.labels.4'),
+    t('charts.line.labels.5'),
+    t('charts.line.labels.6')
+  ]
 
   const data = {
     labels,
     datasets: [
       {
-        label: 'Scheduled',
+        label: t('charts.line.legend.0'),
         data: labels.map(() => faker.datatype.number({ min: 8, max: 20 })),
         borderColor: '#79969B',
         backgroundColor: '#79969B'
       },
       {
-        label: 'Consulted',
+        label: t('charts.line.legend.1'),
         data: labels.map(() => faker.datatype.number({ min: 5, max: 10 })),
         borderColor: '#68697D',
         backgroundColor: '#68697D'
