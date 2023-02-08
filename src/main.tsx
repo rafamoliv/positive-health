@@ -8,6 +8,7 @@ import '@/locales/i18n'
 
 import Store from '@/store'
 
+import { Loading } from './components'
 import { AppContextProvider } from './context/AppContext'
 import Routes from './routes'
 
@@ -16,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={Store}>
       <AppContextProvider>
         <BrowserRouter>
-          <Suspense fallback={<h1>Loading...</h1>}>
+          <Suspense fallback={<Loading />}>
             <Routes />
           </Suspense>
         </BrowserRouter>

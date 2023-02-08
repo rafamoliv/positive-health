@@ -5,7 +5,7 @@ import { AppContextProps, AppProviderProps } from './types'
 export const AppContext = createContext<Partial<AppContextProps>>({})
 
 export const AppContextProvider = (props: AppProviderProps) => {
-  const [user, setUser] = useState<string | null>(null)
+  const [user, setUser] = useState<string | null>('null')
 
   const handleSignIn = (email: string) => {
     try {
