@@ -69,6 +69,7 @@ const Appointment = () => {
         <Label title={'Plan'}>
           {faker.helpers.arrayElement(['free', 'basic', 'business'])}
         </Label>
+        <Label title={'Values'}>{faker.finance.amount(50, 200, 2, '$')}</Label>
       </Modal>
     </SystemPage.Root>
   )
