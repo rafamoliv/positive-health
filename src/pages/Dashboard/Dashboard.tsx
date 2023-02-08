@@ -5,7 +5,7 @@ import { Figure } from 'react-bootstrap'
 import { Button, Calendar, Card, Label, Modal } from '@/components'
 
 import config from './Dashboard.config'
-import { LineChart, PieChart } from './charts'
+import { LineChart, DoughnutChart, PieChart, VerticalBarChart } from './charts'
 
 import { SystemPage } from '@/templates/SystemPage'
 
@@ -13,11 +13,23 @@ const Dashboard = () => {
   const [showPatientModal, setShowPatientModal] = useState(false)
 
   return (
-    <SystemPage.Root>
+    <SystemPage.Root title="Dashboard">
       <SystemPage.Section>
-        <Card.Root title={'Consultas agendadas'}>
+        <div className="d-flex mw-100 gap-2 mb-3 justify-content-between">
+          <Card.Root title={'Daily schedules'}>
+            <Card.Item>
+              <DoughnutChart />
+            </Card.Item>
+          </Card.Root>
+          <Card.Root title={'Daily revenue'}>
+            <Card.Item>
+              <PieChart />
+            </Card.Item>
+          </Card.Root>
+        </div>
+        <Card.Root title={'Monthly revenue'}>
           <Card.Item>
-            <PieChart />
+            <VerticalBarChart />
           </Card.Item>
         </Card.Root>
       </SystemPage.Section>
