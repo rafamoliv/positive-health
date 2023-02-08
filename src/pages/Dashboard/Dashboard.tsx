@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker'
 import { faFaceSadCry, faFaceSmile } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import { Figure, Toast, ToastContainer } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 
 import { Button, Calendar, Card, Label, Modal } from '@/components'
 import { ProgressiveBar } from '@/components/ProgressiveBar'
@@ -12,6 +13,7 @@ import { LineChart, DoughnutChart, PieChart, VerticalBarChart } from './charts'
 import { SystemPage } from '@/templates'
 
 const Dashboard = () => {
+  const { t } = useTranslation('dashboardText')
   const [showPatientModal, setShowPatientModal] = useState(false)
   const [showToast, setShowToast] = useState(true)
 
@@ -22,40 +24,40 @@ const Dashboard = () => {
   const negativeProgressiveBar = 100 - positiveReviewProgressiveBar
 
   return (
-    <SystemPage.Root title="Dashboard">
+    <SystemPage.Root title={t('title')}>
       <SystemPage.Section>
         <div className="d-flex mw-100 gap-2 mb-3 justify-content-between">
-          <Card.Root title={'Daily schedules'}>
+          <Card.Root title={t('cards.dailySchedules.title')}>
             <Card.Item>
               <DoughnutChart />
             </Card.Item>
           </Card.Root>
-          <Card.Root title={'Daily revenue'}>
+          <Card.Root title={t('cards.dailyRevenue.title')}>
             <Card.Item>
               <PieChart />
             </Card.Item>
           </Card.Root>
         </div>
 
-        <Card.Root className="mb-3" title={'Monthly revenue'}>
+        <Card.Root className="mb-3" title={t('cards.monthlyRevenue.title')}>
           <Card.Item>
             <VerticalBarChart />
           </Card.Item>
         </Card.Root>
 
-        <Card.Root title={'Analytics'}>
+        <Card.Root title={t('cards.analytics.title')}>
           <Card.Item>
             <ProgressiveBar
               className="mb-2"
               icon={faFaceSmile}
-              label={'Positive review'}
+              label={t('cards.analytics.positive')}
               now={positiveReviewProgressiveBar}
               variant="success"
             />
 
             <ProgressiveBar
               icon={faFaceSadCry}
-              label={'Negative review'}
+              label={t('cards.analytics.negative')}
               now={negativeProgressiveBar}
               variant="info"
             />
@@ -66,13 +68,13 @@ const Dashboard = () => {
       <SystemPage.Aside>
         <Calendar />
 
-        <Card.Root title={'Patient Statistics'}>
+        <Card.Root title={t('cards.patientStatistics.title')}>
           <Card.Item>
             <LineChart />
           </Card.Item>
         </Card.Root>
 
-        <Card.Root title={'Patient Application'}>
+        <Card.Root title={t('cards.patientApplication.title')}>
           {config.patients.map((x, i) => (
             <Card.Item key={i}>
               <div className="d-flex align-items-center justify-content-between">
@@ -90,7 +92,7 @@ const Dashboard = () => {
                   <span>{x.name}</span>
                 </div>
                 <Button onClick={() => setShowPatientModal(true)}>
-                  View profile
+                  {t('cards.patientApplication.btn')}
                 </Button>
               </div>
             </Card.Item>
@@ -101,7 +103,7 @@ const Dashboard = () => {
       <Modal
         onHide={() => setShowPatientModal(false)}
         show={showPatientModal}
-        title={'Patient'}
+        title={t('modal.title')}
       >
         <div className="d-flex justify-content-between align-items-center">
           <div>
@@ -143,7 +145,11 @@ const Dashboard = () => {
               />
             </Figure>
             <strong className="me-auto mx-2">{`${faker.name.firstName()} ${faker.name.lastName()}`}</strong>
-            <small>{faker.datatype.number({ min: 2, max: 59 })} mins ago</small>
+            <small>
+              {t('toast.time', {
+                value: faker.datatype.number({ min: 2, max: 59 })
+              })}
+            </small>
           </Toast.Header>
           <Toast.Body>{faker.lorem.paragraph()}</Toast.Body>
         </Toast>

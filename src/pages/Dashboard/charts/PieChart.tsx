@@ -1,10 +1,13 @@
 import { faker } from '@faker-js/faker'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
+import { useTranslation } from 'react-i18next'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 export const PieChart = () => {
+  const { t } = useTranslation('dashboardText')
+
   const options = {
     responsive: true,
     plugins: {
@@ -15,7 +18,11 @@ export const PieChart = () => {
   }
 
   const pieChart = {
-    labels: ['Credit Card', 'Billet', 'Cash'],
+    labels: [
+      t('charts.pie.labels.0'),
+      t('charts.pie.labels.1'),
+      t('charts.pie.labels.2')
+    ],
     datasets: [
       {
         label: 'US$',

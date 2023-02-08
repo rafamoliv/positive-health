@@ -1,10 +1,13 @@
 import { faker } from '@faker-js/faker'
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
+import { useTranslation } from 'react-i18next'
 
 ChartJS.register(ArcElement, Tooltip)
 
 export const DoughnutChart = () => {
+  const { t } = useTranslation('dashboardText')
+
   const options = {
     responsive: true,
     plugins: {
@@ -15,7 +18,7 @@ export const DoughnutChart = () => {
   }
 
   const doughnutChart = {
-    labels: ['Scheduled', 'Treated'],
+    labels: [t('charts.doughtnut.labels.0'), t('charts.doughtnut.labels.1')],
     datasets: [
       {
         data: [

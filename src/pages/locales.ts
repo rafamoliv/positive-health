@@ -1,11 +1,11 @@
-/* //import { homeEn, homePtBr } from './Home'
+import { dashboardEn, dashboardPtBr } from './Dashboard'
 
 const pagesEn = {
-  //...homeEn
+  ...dashboardEn
 }
 
 const pagesPtBr = {
-  //...homePtBr
+  ...dashboardPtBr
 }
 
-export { pagesEn, pagesPtBr } */
+export { pagesEn, pagesPtBr }
