@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
-  disabled: boolean
+  disabled?: boolean
   type?: 'button' | 'submit' | 'reset'
   variant?: string
 }
