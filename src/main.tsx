@@ -1,5 +1,5 @@
 import { StrictMode, Suspense } from 'react'
-import '@/styles/styles.scss'
+import '@/styles/global.scss'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
