@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
-  variant: string
+  variant?: string
 }
 
 export const ButtonPersonalized: FC<ButtonProps> = (
