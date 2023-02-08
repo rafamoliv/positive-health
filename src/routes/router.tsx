@@ -1,16 +1,14 @@
-import i18next from 'i18next'
 import * as React from 'react'
-import { useDispatch } from 'react-redux'
 import { Navigate, Outlet, useNavigate, useRoutes } from 'react-router-dom'
 
 import { privateURL, publicURL } from './urls'
-import { useAppSelector } from '@/utils/hooks'
 
 // pages
 const Dashboard = React.lazy(() => import('@/pages/Dashboard'))
+const SingIn = React.lazy(() => import('@/pages/SignIn'))
 
 // eslint-disable-next-line react/prop-types
-const ProtectedRoute = ({ user }) => {
+const ProtectedRoute = ({ user }: { user: string }) => {
   if (user) {
     return <Outlet />
   }
@@ -18,52 +16,31 @@ const ProtectedRoute = ({ user }) => {
   return <Navigate to={publicURL.SIGNIN} />
 }
 
-// eslint-disable-next-line react/prop-types
-const Signin = ({ onClick }) => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%'
-      }}
-    >
-      <h3>{i18next.t('globalText:sign') as string}</h3>
-      <button onClick={onClick}>
-        {i18next.t('globalText:sign', { context: 'btn' }) as string}
-      </button>
-    </div>
-  )
-}
-
 const Router = () => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   React.useEffect(() => {
     if (true) {
-      navigate(privateURL.HOME)
+      navigate(privateURL.DASHBOARD)
     } else {
       navigate(publicURL.SIGNIN)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  let routes = useRoutes([
+  const routes = useRoutes([
     {
       element: <ProtectedRoute user={'user'} />,
       children: [
         {
-          path: privateURL.HOME,
+          path: privateURL.DASHBOARD,
           element: <Dashboard />
         }
       ]
     },
     {
       path: publicURL.SIGNIN,
-      element: <Signin />
+      element: <SingIn />
     }
   ])
 
