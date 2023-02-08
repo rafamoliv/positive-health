@@ -1,1 +1,5 @@
 export { componentsEn, componentsPtBr } from './locales'
+export * from './Button'
+export * from './Calendar'
+export * from './Card'
+export * from './Modal'
