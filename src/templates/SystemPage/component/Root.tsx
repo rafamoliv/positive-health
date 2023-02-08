@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { faker } from '@faker-js/faker'
 import {
   faRightFromBracket,
   faCircleInfo,
@@ -47,7 +46,7 @@ CustomToggle.displayName = 'CustomToggle'
  */
 
 export const Root = ({ children, title }: RootProps) => {
-  const { handleSignOut } = useContext(AppContext)
+  const { handleSignOut, user } = useContext(AppContext)
   const { pathname: location } = useLocation()
 
   const labelStyles = 'fw-semibold'
@@ -135,7 +134,7 @@ export const Root = ({ children, title }: RootProps) => {
             className="d-flex align-items-center container justify-content-between m-auto"
             style={{ height: '80px' }}
           >
-            <h2 className="text-light">Olá, {faker.name.firstName()}</h2>
+            <h2 className="text-light">Olá, {user?.name}</h2>
 
             <nav className="d-flex align-items-center gap-4">
               <FontAwesomeIcon
@@ -151,7 +150,7 @@ export const Root = ({ children, title }: RootProps) => {
                       className="mb-0"
                       height={48}
                       roundedCircle
-                      src={faker.image.avatar()}
+                      src={user?.avatar as string}
                       width={48}
                     />
                   </Figure>

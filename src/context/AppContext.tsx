@@ -1,16 +1,25 @@
+import { faker } from '@faker-js/faker'
 import { useState, createContext } from 'react'
 
 import config from './AppContext.config'
-import { AppContextProps, AppProviderProps } from './types'
+import { AppContextProps, AppProviderProps, StateProps } from './types'
 
 export const AppContext = createContext<Partial<AppContextProps>>({})
 
 export const AppContextProvider = (props: AppProviderProps) => {
-  const [user, setUser] = useState<string | null>('null')
+  const [user, setUser] = useState<StateProps | null>({
+    avatar: null,
+    name: null,
+    email: null
+  })
 
   const handleSignIn = (email: string) => {
     try {
-      setUser(email)
+      setUser({
+        avatar: faker.image.avatar(),
+        name: faker.name.firstName(),
+        email
+      })
     } catch (error) {
       console.warn(error)
     }

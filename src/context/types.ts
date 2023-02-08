@@ -9,7 +9,13 @@ export interface AppContextProps extends AppChildrenProps {
   handleSignIn: (email: string) => void
   handleSignOut: () => void
   schedule: { avatar: string; name: string; plan: string; code: string }[]
-  user: string | null
+  user: StateProps | null
 }
 
 export type AppProviderProps = AppChildrenProps
+
+export interface StateProps {
+  avatar: null | string
+  name: null | string
+  email: null | string
+}
