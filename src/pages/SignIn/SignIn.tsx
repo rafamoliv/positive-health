@@ -43,7 +43,7 @@ const SignIn = () => {
     if (user) navigate(privateURL.DASHBOARD)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
-  console.log(errors.email?.message, errors.password?.message, isValid)
+
   return (
     <SignPage>
       <Figure>
@@ -72,6 +72,10 @@ const SignIn = () => {
         />
         <Form.Button disabled={!isValid}>Sign In</Form.Button>
       </Form.Root>
+
+      <span className="mt-3 text-black-50 fs-6">
+        *Any valid email and password will be possible to log in
+      </span>
     </SignPage>
   )
 }
