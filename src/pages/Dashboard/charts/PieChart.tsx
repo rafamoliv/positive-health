@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker'
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 
@@ -17,7 +18,10 @@ export const PieChart = () => {
     labels: ['Pendente de atendimento', 'Atendidos'],
     datasets: [
       {
-        data: [7, 4],
+        data: [
+          faker.datatype.number({ min: 3, max: 10 }),
+          faker.datatype.number({ min: 5, max: 8 })
+        ],
         backgroundColor: ['#68697D', '#79969B']
       }
     ]
