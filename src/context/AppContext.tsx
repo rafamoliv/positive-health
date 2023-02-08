@@ -1,5 +1,6 @@
 import { useState, createContext } from 'react'
 
+import config from './AppContext.config'
 import { AppContextProps, AppProviderProps } from './types'
 
 export const AppContext = createContext<Partial<AppContextProps>>({})
@@ -24,7 +25,9 @@ export const AppContextProvider = (props: AppProviderProps) => {
   }
 
   return (
-    <AppContext.Provider value={{ user, handleSignIn, handleSignOut }}>
+    <AppContext.Provider
+      value={{ user, handleSignIn, handleSignOut, schedule: config.schedule }}
+    >
       {props.children}
     </AppContext.Provider>
   )
