@@ -1,7 +1,7 @@
 export const privateURL = {
   DASHBOARD: '/',
   SCHEDULING: '/scheduling',
-  CONSULTATION: '/consultation'
+  APPOINTMENTS: '/appointments'
 }
 
 export const publicURL = {

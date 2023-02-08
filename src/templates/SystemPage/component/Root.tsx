@@ -100,9 +100,9 @@ export const Root = ({ children, title }: RootProps) => {
           <li>
             <Link
               className={clsx(linkStyles, {
-                'link-success': location === privateURL.CONSULTATION
+                'link-success': location === privateURL.APPOINTMENTS
               })}
-              to={privateURL.CONSULTATION}
+              to={privateURL.APPOINTMENTS}
             >
               <FontAwesomeIcon className={svgStyles} icon={faListCheck} />
               <span className={labelStyles}>Consulta</span>
