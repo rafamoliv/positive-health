@@ -4,7 +4,7 @@ import { SystemPage } from '@/templates'
 
 const Schedule = () => {
   return (
-    <SystemPage.Root title="Dashboard">
+    <SystemPage.Root title="Schedule">
       <SystemPage.Section>Body</SystemPage.Section>
 
       <SystemPage.Aside>
