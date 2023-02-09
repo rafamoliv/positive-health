@@ -6,6 +6,10 @@
 # Positive Health
 A healthcare company created for study and practice purposes only.
 
+## Future features
+1. Test with Vitest and Testing-library
+2. Storybook
+
 ## Summary
 - [Access website](#access-website)
 - [Technologies](#technologies)
