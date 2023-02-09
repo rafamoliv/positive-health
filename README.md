@@ -24,6 +24,7 @@ A healthcare company created for study and practice purposes only.
 
 - [TypeScript](https://www.typescriptlang.org/docs/)
 - [ReactJS](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [React Hook Form](https://react-hook-form.com/get-started)
 - [Yup](https://github.com/jquense/yup)
