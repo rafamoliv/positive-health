@@ -1,5 +1,11 @@
-const componentsEn = {}
+import { calendarEn, calendarPtBr } from './Calendar'
 
-const componentsPtBr = {}
+const componentsEn = {
+  ...calendarEn
+}
+
+const componentsPtBr = {
+  ...calendarPtBr
+}
 
 export { componentsEn, componentsPtBr }

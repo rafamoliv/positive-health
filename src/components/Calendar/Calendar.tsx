@@ -15,6 +15,7 @@ import {
   subWeeks
 } from 'date-fns'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface CalendarProps {
   currentMonth: Date
@@ -31,12 +32,13 @@ interface HeaderProps extends CalendarProps {
 }
 
 const Header = ({ currentMonth, changeWeekHandle }: HeaderProps) => {
+  const { t } = useTranslation('calendarText')
   const dateFormat = 'MMMM yyyy'
   const buttonStyles = 'bg-transparent border-0'
 
   return (
     <div className="d-flex justify-content-between align-items-center">
-      <h4>Calendar</h4>
+      <h4>{t('title')}</h4>
 
       <div className="d-flex gap-4">
         <span>{format(currentMonth, dateFormat)}</span>
