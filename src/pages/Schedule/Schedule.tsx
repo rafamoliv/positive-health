@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react'
 import { Alert, Figure } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import * as yup from 'yup'
 
 import { Calendar, Card, Form } from '@/components'
@@ -34,6 +35,7 @@ const scheduleFormSchema = yup.object().shape({
 })
 
 const Schedule = () => {
+  const { t } = useTranslation('scheduleText')
   const [showAlert, setShowAlert] = useState(false)
 
   const {
@@ -64,9 +66,9 @@ const Schedule = () => {
   const scheduledPatients = config.patients
 
   return (
-    <SystemPage.Root title="Schedule">
+    <SystemPage.Root title={t('title')}>
       <SystemPage.Section>
-        <Card.Root title={'Schedule appointment'}>
+        <Card.Root title={t('cards.schedule.title')}>
           <Card.Item>
             <Form.Root onSubmit={handleSubmit(onSubmit)}>
               <div className="d-flex justify-content-between">
@@ -74,14 +76,14 @@ const Schedule = () => {
                   className="w-100 me-3"
                   error={errors.fullname?.message}
                   id={'fullname'}
-                  placeholder={'Fullname'}
+                  placeholder={t('form.name')}
                   register={register}
                   type="text"
                 />
                 <Form.Input
                   error={errors.date?.message}
                   id={'date'}
-                  placeholder={'Date'}
+                  placeholder={t('form.date')}
                   register={register}
                   type="date"
                 />
@@ -89,7 +91,7 @@ const Schedule = () => {
               <Form.Input
                 error={errors.email?.message}
                 id={'email'}
-                placeholder={'Email'}
+                placeholder={t('form.email')}
                 register={register}
                 type="text"
               />
@@ -98,7 +100,7 @@ const Schedule = () => {
                   className="w-50 me-3"
                   error={errors.specialty?.message}
                   id={'specialty'}
-                  placeholder={'Specialty'}
+                  placeholder={t('form.specialty')}
                   register={register}
                   type="text"
                 />
@@ -106,12 +108,12 @@ const Schedule = () => {
                   className="w-50"
                   error={errors.doctor?.message}
                   id={'doctor'}
-                  placeholder={'Doctor'}
+                  placeholder={t('form.doctor')}
                   register={register}
                   type="text"
                 />
               </div>
-              <Form.Button disabled={!isValid}>Schedule</Form.Button>
+              <Form.Button disabled={!isValid}>{t('form.btn')}</Form.Button>
             </Form.Root>
           </Card.Item>
         </Card.Root>
@@ -122,7 +124,7 @@ const Schedule = () => {
           show={showAlert}
           variant="success"
         >
-          <Alert.Heading>Registration done!</Alert.Heading>
+          <Alert.Heading>{t('alert.title')}</Alert.Heading>
           <p>{faker.lorem.paragraph()}</p>
         </Alert>
       </SystemPage.Section>
@@ -131,7 +133,7 @@ const Schedule = () => {
         <Calendar />
 
         <div className="schedule">
-          <Card.Root title={'Patient Application'}>
+          <Card.Root title={t('cards.applications.title')}>
             <div className="d-flex flex-column gap-2 schedule__patients">
               {scheduledPatients.map((x, i) => (
                 <Card.Item key={i}>
