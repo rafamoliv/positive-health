@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { forwardRef, useContext } from 'react'
 import { Dropdown, Figure } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 
 import { CustomToggleProps, RootProps } from '../types'
@@ -46,6 +47,7 @@ CustomToggle.displayName = 'CustomToggle'
  */
 
 export const Root = ({ children, title }: RootProps) => {
+  const { t } = useTranslation('systemPagesText')
   const { handleSignOut, user } = useContext(AppContext)
   const { pathname: location } = useLocation()
 
@@ -64,13 +66,13 @@ export const Root = ({ children, title }: RootProps) => {
         style={{ width: '6rem', zIndex: '1' }}
       >
         <Link className={linkStyles} to={privateURL.DASHBOARD}>
-          <figure className="text-center">
-            <img
+          <Figure className="text-center">
+            <Figure.Image
               alt="PositiveHealth logo small"
-              className="w-50"
               src={IconLogoPh}
+              width={40}
             />
-          </figure>
+          </Figure>
         </Link>
 
         <ul className="mb-auto p-0">
@@ -82,7 +84,7 @@ export const Root = ({ children, title }: RootProps) => {
               to={privateURL.DASHBOARD}
             >
               <FontAwesomeIcon className={svgStyles} icon={faGrip} />
-              <span className={labelStyles}>Dashboard</span>
+              <span className={labelStyles}>{t('sidebar.dashboard')}</span>
             </Link>
           </li>
           <li className={listStyles}>
@@ -93,7 +95,7 @@ export const Root = ({ children, title }: RootProps) => {
               to={privateURL.SCHEDULING}
             >
               <FontAwesomeIcon className={svgStyles} icon={faCalendarDays} />
-              <span className={labelStyles}>Schedule</span>
+              <span className={labelStyles}>{t('sidebar.schedule')}</span>
             </Link>
           </li>
           <li>
@@ -104,7 +106,7 @@ export const Root = ({ children, title }: RootProps) => {
               to={privateURL.APPOINTMENTS}
             >
               <FontAwesomeIcon className={svgStyles} icon={faListCheck} />
-              <span className={labelStyles}>Appoint</span>
+              <span className={labelStyles}>{t('sidebar.appointment')}</span>
             </Link>
           </li>
         </ul>
@@ -134,7 +136,9 @@ export const Root = ({ children, title }: RootProps) => {
             className="d-flex align-items-center container justify-content-between m-auto"
             style={{ height: '80px' }}
           >
-            <h2 className="text-light">Olá, {user?.name}</h2>
+            <h2 className="text-light">
+              {t('navbar.welcome', { value: user?.name })}
+            </h2>
 
             <nav className="d-flex align-items-center gap-4">
               <FontAwesomeIcon
@@ -157,11 +161,15 @@ export const Root = ({ children, title }: RootProps) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href={'#'}>Perfil</Dropdown.Item>
-                  <Dropdown.Item href={'#'}>Configurações</Dropdown.Item>
+                  <Dropdown.Item href={'#'}>
+                    {t('navbar.menu.profile')}
+                  </Dropdown.Item>
+                  <Dropdown.Item href={'#'}>
+                    {t('navbar.menu.settings')}
+                  </Dropdown.Item>
                   <Dropdown.Divider />
                   <Dropdown.Item href={'#'} onClick={() => handleSignOut?.()}>
-                    Sair
+                    {t('navbar.menu.logout')}
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

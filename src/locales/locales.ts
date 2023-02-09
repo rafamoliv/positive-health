@@ -4,6 +4,8 @@ import { storeEn, storePtBr } from '@/store'
 
 import { globalPtBr, globalEn } from './globals'
 
+import { templatesEn, templatesPtBr } from '@/templates/locales'
+
 export const defaultLocales = ['en', 'ptbr']
 
 const locales = {
@@ -11,13 +13,15 @@ const locales = {
     ...globalEn,
     ...pagesEn,
     ...componentsEn,
-    ...storeEn
+    ...storeEn,
+    ...templatesEn
   },
   ptbr: {
     ...globalPtBr,
     ...pagesPtBr,
     ...componentsPtBr,
-    ...storePtBr
+    ...storePtBr,
+    ...templatesPtBr
   }
 }
 
