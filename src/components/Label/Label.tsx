@@ -5,6 +5,10 @@ interface LabelProps extends HTMLAttributes<HTMLDivElement> {
   title: string
 }
 
+/**
+ * Label component to render a text with a label
+ */
+
 export const Label: FC<LabelProps> = ({ children, title }, rest) => {
   return (
     <div {...rest}>

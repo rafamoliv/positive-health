@@ -12,6 +12,10 @@ interface ProgressiveBarProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: string
 }
 
+/**
+ * Progressive bar component used to analytic data
+ */
+
 export const ProgressiveBar = ({
   className,
   icon,

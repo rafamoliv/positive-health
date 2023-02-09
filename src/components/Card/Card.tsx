@@ -10,6 +10,10 @@ interface RootProps extends CardProps {
   title: string
 }
 
+/**
+ * CardRoot to control card component
+ */
+
 export const Root = ({ children, className, title }: RootProps) => {
   return (
     <div>
@@ -21,11 +25,24 @@ export const Root = ({ children, className, title }: RootProps) => {
   )
 }
 
+/**
+ * CardItem to render each card item
+ */
+
 export const Item = ({ children, className }: CardProps) => {
   return (
     <div className={clsx('bg-white rounded-5 p-4', className)}>{children}</div>
   )
 }
+
+/**
+ * Card component
+ *
+ * Usage example:
+ * <Card.Root>
+ *  <Card.Item>example</Card.Item>
+ * <Card.Root/>
+ */
 
 export const Card = {
   Root,

@@ -8,6 +8,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: string
 }
 
+/**
+ * Button component
+ */
+
 export const ButtonPersonalized: FC<ButtonProps> = (
   { children, disabled, onClick, type, variant = 'outline-secondary' },
   rest

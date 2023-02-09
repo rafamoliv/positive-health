@@ -1,3 +1,7 @@
+/**
+ * Loading component for loader status
+ */
+
 export const Loading = () => {
   return (
     <div className="text-center m-4">

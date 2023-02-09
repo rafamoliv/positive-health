@@ -8,6 +8,11 @@ interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   title: string
 }
 
+/**
+ * Modal component
+ * Centered bootstrap modal
+ */
+
 export const ModalPersonalized: FC<ButtonProps> = (
   { children, show, onHide, title },
   rest
