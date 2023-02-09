@@ -40,9 +40,6 @@ A healthcare company created for study and practice purposes only.
 - [Prettier](https://prettier.io/)
 - [Husky](https://github.com/typicode/husky)
 - [Lint-Staged](https://github.com/okonet/lint-staged)
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
-- [Vitest](https://vitest.dev/)
-- [Storybook](https://storybook.js.org/)
 
 ## Settings
 
@@ -73,10 +70,6 @@ Internationalization done using i18next, if in doubt, please read the documentat
 * `preview`: generates for production and starts a local server on `http://localhost:{port}/`.
 * `lint`: runs the linter on all components and pages.
 * `format`: runs prettier to format all components and pages.
-* `test`: runs vitest in watch mode.
-* `test:coverage`: runs vitest with code coverage.
-* `storybook`: runs the storybook and starts a local server at `http://localhost:{port}/`.
-* `storybook:build`: generates a build for storybook production.
 
 ## Development flow
 1. Digite no terminal `yarn dev` para iniciar o projeto
