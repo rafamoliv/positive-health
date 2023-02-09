@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useContext, useEffect } from 'react'
 import { Figure } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 
@@ -23,6 +24,7 @@ const sigInFormSchema = yup.object().shape({
 })
 
 const SignIn = () => {
+  const { t } = useTranslation('signInText')
   const { user, handleSignIn } = useContext(AppContext)
   const navigate = useNavigate()
 
@@ -58,7 +60,7 @@ const SignIn = () => {
         <Form.Input
           error={errors.email?.message}
           id={'email'}
-          placeholder="Email"
+          placeholder={t('form.email')}
           register={register}
           type="text"
         />
@@ -66,16 +68,14 @@ const SignIn = () => {
           className="mb-1"
           error={errors.password?.message}
           id={'password'}
-          placeholder="Password"
+          placeholder={t('form.password')}
           register={register}
           type="password"
         />
-        <Form.Button disabled={!isValid}>Sign In</Form.Button>
+        <Form.Button disabled={!isValid}>{t('form.btn')}</Form.Button>
       </Form.Root>
 
-      <span className="mt-3 text-black-50 fs-6">
-        *Any valid email and password will be possible to log in
-      </span>
+      <span className="mt-3 text-black-50 fs-6">{t('txt')}</span>
     </SignPage>
   )
 }

@@ -1,9 +1,5 @@
 const storePtBr = {
-  rxStore: {
-    initialSettings: {
-      changeResult: 'Exemplo personalizando response'
-    }
-  }
+  rxStore: {}
 }
 
 export default storePtBr

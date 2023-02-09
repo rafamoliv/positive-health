@@ -1,9 +1,5 @@
 const storeEn = {
-  rxStore: {
-    initialSettings: {
-      changeResult: 'Example customizing response'
-    }
-  }
+  rxStore: {}
 }
 
 export default storeEn
