@@ -15,6 +15,8 @@ import { Dropdown, Figure } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 
+import { Button } from '@/components'
+
 import { CustomToggleProps, RootProps } from '../types'
 
 import { IconLogoPh } from '@/assets'
@@ -47,7 +49,7 @@ CustomToggle.displayName = 'CustomToggle'
  */
 
 export const Root = ({ children, title }: RootProps) => {
-  const { t } = useTranslation('systemPagesText')
+  const { t, i18n } = useTranslation('systemPagesText')
   const { handleSignOut, user } = useContext(AppContext)
   const { pathname: location } = useLocation()
 
@@ -141,6 +143,11 @@ export const Root = ({ children, title }: RootProps) => {
             </h2>
 
             <nav className="d-flex align-items-center gap-4">
+              <div className="d-flex gap-1">
+                <Button onClick={() => i18n.changeLanguage('ptbr')}>PT</Button>
+                <Button onClick={() => i18n.changeLanguage('en')}>EN</Button>
+              </div>
+
               <FontAwesomeIcon
                 className={clsx(svgStyles, 'p-2 p-2 text-light')}
                 icon={faBell}
