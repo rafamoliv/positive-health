@@ -86,7 +86,7 @@
             "group": "internal"
           },
           {
-            "pattern": "@/layout/**",
+            "pattern": "@/templates/**",
             "patternOptions": {
               "partial": true,
               "nocomment": true

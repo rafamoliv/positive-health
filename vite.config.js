@@ -12,26 +12,6 @@ export default defineConfig(() => {
         '@': pathResolve('./src'),
         '~bootstrap': pathResolve(__dirname, 'node_modules/bootstrap')
       }
-    },
-    test: {
-      globals: true,
-      environment: 'jsdom',
-      setupFiles: './vitest.setup.js',
-      coverage: {
-        provide: 'c8',
-        exclude: [
-          'vitest.setup.ts',
-          '**/*.test.{ts,tsx}',
-          '**/*.stories.tsx',
-          '**/*.config.ts',
-          'src/assets/**/*',
-          'src/store/**/*',
-          'src/utils/*',
-          'src/styles/*',
-          'src/components/**/index.ts',
-          'src/services/api.ts'
-        ]
-      }
     }
   }
 })
