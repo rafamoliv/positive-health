@@ -1,5 +1,5 @@
 <center>
-  <img src=".gitlab/assets/logo_positivehealth.svg" alt="Positive Health logo" width="360" />
+  <img src=".github/assets/logo_positivehealth.svg" alt="Positive Health logo" width="360" />
 </center>
 <br /><br />
 
