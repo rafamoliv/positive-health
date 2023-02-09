@@ -1,0 +1,30 @@
+.navbar {
+  &__toggle {
+    button {
+      filter: invert(1) grayscale(100%) brightness(200%);
+    }
+  }
+
+  &__link {
+    &:hover {
+      border: 1px solid $success;
+      border-radius: 4px;
+      opacity: 0.8;
+    }
+  }
+
+  &__profile {
+    display: flex;
+    justify-content: space-between;
+    order: 0;
+    margin-left: 0;
+
+    @include media-breakpoint-up(xl) {
+      align-items: center;
+      justify-content: initial;
+      gap: 8px;
+      order: 1;
+      margin-left: auto;
+    }
+  }
+}

@@ -3,7 +3,7 @@ const systemPagesEn = {
     sidebar: {
       dashboard: 'Dashboard',
       schedule: 'Schedule',
-      appointment: 'Appoint'
+      appointment: 'Appointments'
     },
     navbar: {
       welcome: 'Hello, {{value}}',

@@ -1,21 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  faRightFromBracket,
-  faCircleInfo,
-  faGrip,
-  faCalendarDays,
-  faListCheck,
-  faGear,
-  faBell
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import clsx from 'clsx'
 import { forwardRef, useContext } from 'react'
 import { Dropdown, Figure } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { Button } from '@/components'
+import { Navbar } from '@/components/Navbar/Navbar'
 
 import { CustomToggleProps, RootProps } from '../types'
 
@@ -52,148 +42,84 @@ CustomToggle.displayName = 'CustomToggle'
 export const Root = ({ children, title }: RootProps) => {
   const { t, i18n } = useTranslation('systemPagesText')
   const { handleSignOut, user } = useContext(AppContext)
-  const { pathname: location } = useLocation()
 
-  const labelStyles = 'fw-semibold'
   const linkStyles = 'd-flex flex-column text-center text-decoration-none p-2'
-  const listStyles = 'mb-2'
-  const svgStyles = 'fs-4'
+
+  const expand = 'xl'
 
   return (
-    <div className="d-flex flex-nowrap vh-100 w-100">
-      {/** Sidebar */}
-      <nav
-        className={clsx(
-          'd-flex flex-column flex-shrink-0 pt-3 pb-3 bg-dark',
-          'position-fixed h-100'
-        )}
-        style={{ width: '6rem', zIndex: '1' }}
-      >
-        <Link className={linkStyles} to={privateURL.DASHBOARD}>
-          <Figure className="text-center">
-            <Figure.Image
-              alt="PositiveHealth logo small"
-              src={IconLogoPh}
-              width={40}
-            />
-          </Figure>
-        </Link>
+    <main className="w-100 systemPages">
+      <Navbar.Root expand={expand}>
+        <Navbar.Brand>
+          <Link className={linkStyles} to={privateURL.DASHBOARD}>
+            <Figure className="text-center mb-0">
+              <Figure.Image
+                alt="PositiveHealth logo small"
+                src={IconLogoPh}
+                width={36}
+              />
+            </Figure>
+          </Link>
+        </Navbar.Brand>
+        <Navbar.Toggle expand={expand} />
+        <Navbar.Canvas expand={expand}>
+          <Navbar.Profile name={t('navbar.welcome', { value: user?.name })}>
+            <Dropdown>
+              <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
+                <Figure className="m-0">
+                  <Figure.Image
+                    alt="PositiveHealth Logo"
+                    className="mb-0"
+                    height={48}
+                    roundedCircle
+                    src={user?.avatar as string}
+                    width={48}
+                  />
+                </Figure>
+              </Dropdown.Toggle>
 
-        <ul className="mb-auto p-0">
-          <li className={listStyles}>
-            <Link
-              className={clsx(linkStyles, {
-                'link-success': location === privateURL.DASHBOARD
-              })}
-              to={privateURL.DASHBOARD}
-            >
-              <FontAwesomeIcon className={svgStyles} icon={faGrip} />
-              <span className={labelStyles}>{t('sidebar.dashboard')}</span>
-            </Link>
-          </li>
-          <li className={listStyles}>
-            <Link
-              className={clsx(linkStyles, {
-                'link-success': location === privateURL.SCHEDULING
-              })}
-              to={privateURL.SCHEDULING}
-            >
-              <FontAwesomeIcon className={svgStyles} icon={faCalendarDays} />
-              <span className={labelStyles}>{t('sidebar.schedule')}</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={clsx(linkStyles, {
-                'link-success': location === privateURL.APPOINTMENTS
-              })}
-              to={privateURL.APPOINTMENTS}
-            >
-              <FontAwesomeIcon className={svgStyles} icon={faListCheck} />
-              <span className={labelStyles}>{t('sidebar.appointment')}</span>
-            </Link>
-          </li>
-        </ul>
+              <Dropdown.Menu>
+                <Dropdown.Item href={'#'}>
+                  {t('navbar.menu.profile')}
+                </Dropdown.Item>
+                <Dropdown.Item href={'#'}>
+                  {t('navbar.menu.settings')}
+                </Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item href={'#'} onClick={() => handleSignOut?.()}>
+                  {t('navbar.menu.logout')}
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Navbar.Profile>
 
-        <Link className={linkStyles} to={privateURL.DASHBOARD}>
-          <FontAwesomeIcon className={svgStyles} icon={faGear} />
-        </Link>
-
-        <Link
-          className={linkStyles}
-          target={'_blank'}
-          to={'https://www.linkedin.com/in/rafamoliv/'}
-        >
-          <FontAwesomeIcon className={svgStyles} icon={faCircleInfo} />
-        </Link>
-
-        <Link className={linkStyles} onClick={() => handleSignOut?.()} to={'#'}>
-          <FontAwesomeIcon className={svgStyles} icon={faRightFromBracket} />
-        </Link>
-      </nav>
+          <Navbar.Nav to={privateURL.DASHBOARD}>
+            {t('sidebar.dashboard')}
+          </Navbar.Nav>
+          <Navbar.Nav to={privateURL.SCHEDULING}>
+            {t('sidebar.schedule')}
+          </Navbar.Nav>
+          <Navbar.Nav to={privateURL.APPOINTMENTS}>
+            {t('sidebar.appointment')}
+          </Navbar.Nav>
+          <div className="d-flex">
+            <Button onClick={() => i18n.changeLanguage('ptbr')} variant="dark">
+              PT
+            </Button>
+            <Button onClick={() => i18n.changeLanguage('en')} variant="dark">
+              EN
+            </Button>
+          </div>
+        </Navbar.Canvas>
+      </Navbar.Root>
 
       <div className="align-items-center d-flex flex-column w-100 pl-3 pr-3">
-        {/** Navbar */}
-        <header
-          className={clsx('pl-2 pr-2 bg-dark w-100', 'position-sticky top-0')}
-        >
-          <div
-            className="d-flex align-items-center container justify-content-between m-auto"
-            style={{ height: '80px' }}
-          >
-            <h2 className="text-light">
-              {t('navbar.welcome', { value: user?.name })}
-            </h2>
-
-            <nav className="d-flex align-items-center gap-4">
-              <div className="d-flex gap-1">
-                <Button onClick={() => i18n.changeLanguage('ptbr')}>PT</Button>
-                <Button onClick={() => i18n.changeLanguage('en')}>EN</Button>
-              </div>
-
-              <FontAwesomeIcon
-                className={clsx(svgStyles, 'p-2 p-2 text-light')}
-                icon={faBell}
-              />
-
-              {/** Avatar menu */}
-              <Dropdown>
-                <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
-                  <Figure className="m-0">
-                    <Figure.Image
-                      alt="PositiveHealth Logo"
-                      className="mb-0"
-                      height={48}
-                      roundedCircle
-                      src={user?.avatar as string}
-                      width={48}
-                    />
-                  </Figure>
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item href={'#'}>
-                    {t('navbar.menu.profile')}
-                  </Dropdown.Item>
-                  <Dropdown.Item href={'#'}>
-                    {t('navbar.menu.settings')}
-                  </Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Item href={'#'} onClick={() => handleSignOut?.()}>
-                    {t('navbar.menu.logout')}
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </nav>
-          </div>
-        </header>
-
         {/** Page content */}
         <div className="container">
           {title && <h2 className="fs-2, fw-bold pt-3 px-2">{title}</h2>}
           <div className="row">{children}</div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
