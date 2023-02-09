@@ -4,6 +4,11 @@ interface SignPageProps {
   children: ReactNode
 }
 
+/**
+ * Template for sign pages
+ * @param {ReactNode} children
+ */
+
 export const SignPage = ({ children }: SignPageProps) => {
   return (
     <div className="d-flex align-items-center vh-100 justify-content-center">

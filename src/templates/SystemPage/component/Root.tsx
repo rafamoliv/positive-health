@@ -46,6 +46,7 @@ CustomToggle.displayName = 'CustomToggle'
 /**
  * Internal pages template
  * @param {ReactNode} children
+ * @param {string} title
  */
 
 export const Root = ({ children, title }: RootProps) => {
@@ -60,6 +61,7 @@ export const Root = ({ children, title }: RootProps) => {
 
   return (
     <div className="d-flex flex-nowrap vh-100 w-100">
+      {/** Sidebar */}
       <nav
         className={clsx(
           'd-flex flex-column flex-shrink-0 pt-3 pb-3 bg-dark',
@@ -131,6 +133,7 @@ export const Root = ({ children, title }: RootProps) => {
       </nav>
 
       <div className="align-items-center d-flex flex-column w-100 pl-3 pr-3">
+        {/** Navbar */}
         <header
           className={clsx('pl-2 pr-2 bg-dark w-100', 'position-sticky top-0')}
         >
@@ -153,6 +156,7 @@ export const Root = ({ children, title }: RootProps) => {
                 icon={faBell}
               />
 
+              {/** Avatar menu */}
               <Dropdown>
                 <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
                   <Figure className="m-0">
@@ -184,6 +188,7 @@ export const Root = ({ children, title }: RootProps) => {
           </div>
         </header>
 
+        {/** Page content */}
         <div className="container">
           {title && <h2 className="fs-2, fw-bold pt-3 px-2">{title}</h2>}
           <div className="row">{children}</div>
