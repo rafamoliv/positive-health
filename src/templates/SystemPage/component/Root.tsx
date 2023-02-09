@@ -117,7 +117,7 @@ export const Root = ({ children, title }: RootProps) => {
         {/** Page content */}
         <div className="container">
           {title && <h2 className="fs-2, fw-bold pt-3 px-2">{title}</h2>}
-          <div className="row">{children}</div>
+          <div className="systemPages__container">{children}</div>
         </div>
       </div>
     </main>
